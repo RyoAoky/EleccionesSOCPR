@@ -1,0 +1,60 @@
+<div class="container-fluid px-4">
+    <h1 class="mt-4 tituloverde">Procedimientos</h1>
+    <div class="card mb-4">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="left-content">
+                <i class="fas fa-table me-1"></i>
+                Formulario de Procedimientos
+            </div>
+            <div>
+                <button class="btn position-relative" style="background-color: #793B8E; color: white; padding:0px"
+                    id="btnGrabar" onclick="Grabar()">
+                    <i class="fa-regular fa-floppy-disk" style="margin: 8px 12px;"></i>
+            </div>
+
+        </div>
+        <div class="card-body" style="max-height: 70vh; overflow-y: auto;">
+            <input type="text" id="nuncom" style="display: none;" value="0">
+            <input type="text" id="codpru_id" style="display: none;" value="0">
+            <input type="text" id="soexa" style="display: none;" value="048">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mt-3 mb-3" id="cards">
+                    </div>
+                    <div id="detInforme">
+                    </div>
+                    <div class="text-center" id="cargacards" style="display: none;">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                            <lottie-player src="/img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="max-height: 320px;">
+                    <div id="divformato" class="row mb-2 mt-2">
+                        <div id="contenedorFormato" class="container">
+                        </div>
+                    </div>
+                    <div class="text-center" id="cargaparametros" style="display: none;">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                            <lottie-player src="/img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 d-flex justify-content-center" id="contenedorPaginacion">
+                    <div id="pag">
+                        <div id="pagination-container" class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+            {{> cie10 }}
+            {{> recomendaciones }}
+            {{> documentoadicionales }}
+        </div>
+    </div>
+</div>
+<script src="/js/historiaclinica/examenes/pbprocedimientos.js"></script>

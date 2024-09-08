@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap">
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            page-break-inside: avoid;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+
+        .borderlaboratorio {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead" style="background-color: white; color: black;">
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 25%;">
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div class="text-center">
+                                            <h1 class="fw-bold" style="font-size: 16px;">LABORATORIO
+                                            </h1>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm" style="font-size: 8px; width: 100%;">
+                            <thead class="fw-bold text-center" style="background-color: gainsboro; color: black;">
+                                <th class="py-0 borderlaboratorio" style="width: 6%;">DNI</th>
+                                <th class="py-0 borderlaboratorio" style="width: 24%;">Nombres y Apellidos</th>
+                                <th class="py-0 borderlaboratorio" style="width: 7%;">Fec. Nac.</th>
+                                <th class="py-0 borderlaboratorio" style="width: 6%;">Edad</th>
+                                <th class="py-0 borderlaboratorio" style="width: 7%;">Sexo</th>
+                                <th class="py-0 borderlaboratorio" style="width: 17%;">Cargo</th>
+                                <th class="py-0 borderlaboratorio" style="width: 21%;">Empresa</th>
+                                <th class="py-0 borderlaboratorio" style="width: 12%;">Tipo Evaluación</th>
+                            </thead>
+                            <tbody>
+                                <td class="py-0 borderlaboratorio ps-1 text-center">{{numdoc}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-start">{{appm_nom}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-center">{{fecnac}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-center">{{Edad}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-center">{{des_sexo}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-start">{{cargo_actual}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-start">{{razsoc}}</td>
+                                <td class="py-0 borderlaboratorio ps-1 text-start">{{desexa}}</td>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm " style="width: 100%; font-size: 10px;">
+                            <thead class="fw-bold text-center" style="background-color: gainsboro; color: black;">
+                                <th class="py-0 borderlaboratorio" style="width: 25%;">ANÁLIIS</th>
+                                <th class="py-0 borderlaboratorio" style="width: 15%;">MÉTODO</th>
+                                <th class="py-0 borderlaboratorio" style="width: 25%;">RESULTADO</th>
+                                <th class="py-0 borderlaboratorio" style="width: 10%;">UNIDAD</th>
+                                <th class="py-0 borderlaboratorio" style="width: 25%;">VALORES DE REFERENCIA</th>
+                            </thead>
+                            <tbody style="font-size: 10px;">
+                                <tr>
+                                    {{#ArrayLaboratorio}}
+                                    <td class="py-0 borderlaboratorio ps-1">{{analisis}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{metodo}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{result}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{unid}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{valref}}</td>
+                                </tr>
+                                {{/ArrayLaboratorio}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm " style="width: 100%; font-size: 10px">
+                            <thead class="fw-bold text-center" style="background-color: gainsboro; color: black;">
+                                <tr>
+                                    <th class="py-0 borderlaboratorio" colspan="2">IMPRESIÓN DIAGNÓSTICO</th>
+                                </tr>
+                                <tr class="">
+                                    <th class="py-0 borderlaboratorio w-50">CIE10</th>
+                                    <th class="py-0 borderlaboratorio w-50">DESCRIPCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 10px ">
+                                {{#cie10}}
+                                <tr>
+                                    <td class="py-0 borderlaboratorio ps-1">{{{diacod}}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{{diades}}}</td>
+                                </tr>
+                                {{/cie10}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <thead class="fw-bold text-center"
+                                style="font-size: 10px; background-color: gainsboro; color: black;">
+                                <tr>
+                                    <th class="py-0 borderlaboratorio w-50">RECOMENDACIONES Y CONTROLES</th>
+                                    <th class="py-0 borderlaboratorio w-50">CONTROL</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 10px">
+                                {{#recomendaciones}}
+                                <tr>
+                                    <td class="py-0 borderlaboratorio ps-1">{{{desrec}}}</td>
+                                    <td class="py-0 borderlaboratorio ps-1">{{{des_control}}}</td>
+                                </tr>
+                                {{/recomendaciones}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>

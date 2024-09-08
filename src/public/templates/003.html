@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            page-break-inside: avoid;
+        }
+
+        .sin-bordes th,
+        .sin-bordes td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead" style="background-color: white; color: black;">
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 25%;">
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div class="text-center">
+                                            <h1 class="fw-bold" style="font-size: 16px;">AUDIOMETRÍA
+                                            </h1>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered" style="font-size: 8px; width: 100%; ">
+                            <thead class="fw-bold text-center" style="background-color: gainsboro; color: black;">
+                                <td class="p-0" style="width: 6%;">DNI</td>
+                                <td class="p-0" style="width: 24%;">Nombres y Apellidos</td>
+                                <td class="p-0" style="width: 9%;">Fec. Nac.</td>
+                                <td class="p-0" style="width: 3%;">Edad</td>
+                                <td class="p-0" style="width: 7%;">Sexo</td>
+                                <td class="p-0" style="width: 17%;">Cargo</td>
+                                <td class="p-0" style="width: 22%;">Empresa</td>
+                                <td class="p-0" style="width: 12%;">Tipo Evaluación</td>
+                            </thead>
+                            <tbody>
+                                <td class="py-0 text-start">{{numdoc}}</td>
+                                <td class="py-0 text-start">{{appm_nom}}</td>
+                                <td class="py-0 text-center ">{{fecnac}}</td>
+                                <td class="py-0 text-center ">{{Edad}}</td>
+                                <td class="py-0 text-center ">{{des_sexo}}</td>
+                                <td class="py-0 text-start">{{cargo_actual}}</td>
+                                <td class="py-0 text-start">{{razsoc}}</td>
+                                <td class="py-0 text-start">{{desexa}}</td>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="text-start" style="font-size: 10px;">
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start">
+                                <tr>
+                                    <td class="fw-bold py-0" style="width: 15%; background-color: gainsboro;">
+                                        AUDIÓMETRO
+                                    </td>
+                                    <td class="fw-bold py-0" style="width: 10%; background-color: gainsboro;">Marca
+                                    </td>
+                                    <td class="py-0" style="width: 15%;">{{marca}}</td>
+                                    <td class="fw-bold py-0" style="width: 10%; background-color: gainsboro;">Modelo
+                                    </td>
+                                    <td class="py-0" style="width: 25%;">{{modelo}}</td>
+                                    <td class="fw-bold py-0" style="width: 15%; background-color: gainsboro;">Fecha
+                                        Calibra.</td>
+                                    <td class="py-0" style="width: 10%;">{{feccali}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr style=" background-color: gainsboro;">
+                                    <td class="fw-bold p-0 ps-1 text-start">ANTECENDENTES</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">
+                                        <textarea name="" id="ante_audio"
+                                            style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" class="text-start">{{ante_audio}}</textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr class="fw-bold text-center" style="background-color: gainsboro;">
+                                    <td class="fw-bold py-0" style="width: 14%;">Fecha de Atención</td>
+                                    <td class="fw-bold py-0" style="width: 31%;">Ocupación</td>
+                                    <td class="fw-bold py-0" style="width: 10%;">Años de trab.</td>
+                                    <td class="fw-bold py-0" style="width: 15%;">Horas de expos.</td>
+                                    <td class="fw-bold py-0" style="width: 15%;">Aprec. ruido</td>
+                                    <td class="fw-bold py-0" style="width: 15%;">Uso de protector auditivo</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 text-center" style="font-size: xx-small;">{{fecaten}}</td>
+                                    <td class="py-0 text-start" style="font-size: xx-small;">{{cargo_actual}}</td>
+                                    <td class="py-0 text-center">{{fecing_empresa}}</td>
+                                    <td class="py-0 text-center" style="text-align: center; font-size: xx-small;">
+                                        {{tiem_exp_hrs}}H</td>
+                                    <td class="py-0 text-start" style="font-size: xx-small;">{{apre_ruido}}</td>
+                                    <td class="py-0 text-start">{{uso_pro_uditivo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                        <tr class="fw-bold text-center" style="background-color: gainsboro">
+                                            <td class="py-0">Antecedentes relacionados</td>
+                                            <td class="py-0">Resultado</td>
+                                        </tr>
+                                        {{#ante_relacionadoArray}}
+                                        <tr class="text-start">
+                                            <td class="py-0">{{texto}}</td>
+                                            <td class="py-0">{{valor}}</td>
+                                        </tr>
+                                        {{/ante_relacionadoArray}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody class="text-start">
+                                        <tr class="fw-bold text-center" style="background-color: gainsboro">
+                                            <td class="py-0">Síntomas actuales</td>
+                                            <td class="py-0">Resultado</td>
+                                        </tr>
+                                        {{#sintomas_actualesArray}}
+                                        <tr class="text-start">
+                                            <td class="py-0">{{texto}}</td>
+                                            <td class="py-0">{{valor}}</td>
+                                        </tr>
+                                        {{/sintomas_actualesArray}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-12 fw-bold text-center">
+                                <h2 style="font-size: 14px;">OTOSCOPÍA</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tbody>
+                                        <tr class="fw-bold text-center" style="background-color: gainsboro">
+                                            <td class="py-0" colspan="3">Oído derecho</td>
+                                        </tr>
+                                        {{#otos_oido_derechoArray}}
+                                        <tr class="text-start">
+                                            <td class="py-0" style="width: 28%;">{{texto}}</td>
+                                            <td class="py-0" style="width: 10%;">{{valor}}</td>
+                                            <td class="py-0">{{obs}}</td>
+                                        </tr>
+                                        {{/otos_oido_derechoArray}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table>
+                                    <tr class="fw-bold text-center" style="background-color: gainsboro">
+                                        <td class="py-0" colspan="3">Oído izquierdo</td>
+                                    </tr>
+                                    {{#otos_oido_izquierdoArray}}
+                                    <tr class="text-start">
+                                        <td class="py-0" style="width: 28%;">{{texto}}</td>
+                                        <td class="py-0" style="width: 10%;">{{valor}}</td>
+                                        <td class="py-0">{{obs}}</td>
+                                    </tr>
+                                    {{/otos_oido_izquierdoArray}}
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start">
+                                <tr>
+                                    <td class="py-0" style="width: 15%; background-color: gainsboro;">
+                                        Logoaudiometría
+                                    </td>
+                                    <td class="py-0" style="width: 10%; background-color: gainsboro;">O.Derecho</td>
+                                    <td class="py-0" style="width: 15%;">{{logoaudiometriaDer}}</td>
+                                    <td class="py-0" style="width: 10%; background-color: gainsboro;">O.Izquierdo
+                                    </td>
+                                    <td class="py-0" style="width: 10%;">{{logoaudiometriaIzq}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="val_oido_derecho">
+                                    <tbody>
+                                        <tr class="fw-bold text-center">
+                                            <td class="p-0 ps-1" colspan="10" rowspan="1">OÍDO DERECHO</td>
+                                        </tr>
+                                        <tr class="fw-bold">
+                                            <td class="p-0 ps-1"></td>
+                                            <td class="p-0 ps-1">125</td>
+                                            <td class="p-0 ps-1">250</td>
+                                            <td class="p-0 ps-1">500</td>
+                                            <td class="p-0 ps-1">1000</td>
+                                            <td class="p-0 ps-1">2000</td>
+                                            <td class="p-0 ps-1">3000</td>
+                                            <td class="p-0 ps-1">4000</td>
+                                            <td class="p-0 ps-1">6000</td>
+                                            <td class="p-0 ps-1">8000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-0 ps-1 fw-bold"><span>V.A.</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_125">{{VA_D_125}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_250">{{VA_D_250}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_500">{{VA_D_500}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_1000">{{VA_D_1000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_2000">{{VA_D_2000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_3000">{{VA_D_3000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_4000">{{VA_D_4000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_6000">{{VA_D_6000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_D_8000">{{VA_D_8000}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-0 ps-1 fw-bold"><span>V.O.</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_125">{{VO_D_125}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_250">{{VO_D_250}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_500">{{VO_D_500}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_1000">{{VO_D_1000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_2000">{{VO_D_2000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_3000">{{VO_D_3000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_4000">{{VO_D_4000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_6000">{{VO_D_6000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_D_8000">{{VO_D_8000}}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table id="val_oido_izquierdo">
+                                    <tbody>
+                                        <tr class="fw-bold text-center">
+                                            <td class="p-0 ps-1" colspan="10" rowspan="1">OÍDO IZQUIERDO</td>
+                                        </tr>
+                                        <tr class="fw-bold">
+                                            <td class="p-0 ps-1"></td>
+                                            <td class="p-0 ps-1">125</td>
+                                            <td class="p-0 ps-1">250</td>
+                                            <td class="p-0 ps-1">500</td>
+                                            <td class="p-0 ps-1">1000</td>
+                                            <td class="p-0 ps-1">2000</td>
+                                            <td class="p-0 ps-1">3000</td>
+                                            <td class="p-0 ps-1">4000</td>
+                                            <td class="p-0 ps-1">6000</td>
+                                            <td class="p-0 ps-1">8000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-0 ps-1 fw-bold"><span>V.A.</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_125">{{VA_E_125}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_250">{{VA_E_250}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_500">{{VA_E_500}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_1000">{{VA_E_1000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_2000">{{VA_E_2000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_3000">{{VA_E_3000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_4000">{{VA_E_4000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_6000">{{VA_E_6000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VA_E_8000">{{VA_E_8000}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-0 ps-1 fw-bold"><span>V.O.</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_125">{{VO_E_125}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_250">{{VO_E_250}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_500">{{VO_E_500}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_1000">{{VO_E_1000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_2000">{{VO_E_2000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_3000">{{VO_E_3000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_4000">{{VO_E_4000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_6000">{{VO_E_6000}}</span></td>
+                                            <td class="p-0 ps-1"><span id="VO_E_8000">{{VO_E_8000}}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="w-50">
+                                        <canvas id="graf_OD"
+                                            style="max-width: 95%; height: 320px; width: 100%;"></canvas>
+                                    </td>
+                                    <td class="w-50">
+                                        <canvas id="graf_OI"
+                                            style="max-width: 95%; height: 320px; width: 100%;"></canvas>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start">
+                                <tr class="fw-bold text-center" style="background-color: gainsboro;">
+                                    <td class="p-0" colspan="2">IMPRESIÓN DIAGNÓSTICO</td>
+                                </tr>
+                                <tr class="fw-bold text-center" style="background-color: gainsboro;">
+                                    <td class="p-0 w-50">CIE10</td>
+                                    <td class="p-0 w-50">DESCRIPCIÓN</td>
+                                </tr>
+                                {{#cie10}}
+                                <tr>
+                                    <td class="py-0">{{{diacod}}}</td>
+                                    <td class="py-0">{{{diades}}}</td>
+                                </tr>
+                                {{/cie10}}
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start">
+                                <tr class="fw-bold text-center" style="background-color: gainsboro;">
+                                    <td class="p-0 w-75">Recomendaciones y controles</td>
+                                    <td class="p-0 w-25">Control</td>
+                                </tr>
+                                {{#recomendaciones}}
+                                <tr>
+                                    <td class="py-0">{{{desrec}}}</td>
+                                    <td class="py-0">{{{des_control}}}</td>
+                                </tr>
+                                {{/recomendaciones}}
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap">
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .border {
+            border: 1px solid;
+        }
+
+        .no-border-bottom {
+            border-bottom: none;
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+        }
+
+        .sin-bordes th,
+        .sin-bordes td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+
+        .FilaOscura {
+            background-color: gainsboro !important;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead" style="background-color: white; color: black;">
+                <tr>
+                    <th>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h1 class="fw-bold" style="font-size: 16px;">ESPIROMETRÍA
+                                </h1>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody style="font-size: 10px;">
+                <tr>
+                    <td class="pb-0 pt-0">
+                        <table>
+                            <tbody class="text-start" style="font-size: 12px;">
+                                <tr>
+                                    <td class="py-0 fw-bold" style="width: 25%; background-color: gainsboro">Fecha
+                                        de atención </td>
+                                    <td class="py-0 ">{{fecaten}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold" style="background-color: gainsboro;">
+                                        Antecedentes Médicos </td>
+                                    <td class="py-0">{{antecedenteMed}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pb-0 pt-0">
+                        <table>
+                            <tbody style="font-size: 12px;">
+                                <tr class="fw-bold text-center" style="background-color: gainsboro">
+                                    <td class="py-0">Fumador</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0">{{std_fuma}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pb-0 pt-0">
+                        <table>
+                            <tbody style="font-size: 14px;">
+                                <tr class="fw-bold text-center" style="width: 50%; background-color: gainsboro">
+                                    <td class="py-0" style="width: 14%;">Parámetros</td>
+                                    <td class="py-0" style="width: 14%;">TEÓRICO</td>
+                                    <td class="py-0" style="width: 14%;">PRE</td>
+                                    <td class="py-0" style="width: 14%;">TEÓRICO %</td>
+                                    <td class="py-0" style="width: 14%;">PRE#1</td>
+                                    <td class="py-0" style="width: 14%;">PRE#2</td>
+                                    <td class="py-0" style="width: 14%;">PRE#3</td>
+                                </tr>
+                                {{#rows}}
+                                <tr>
+                                    <td class="py-0">{{despar}}</td>
+                                    <td class="py-0">{{valor_ref}}</td>
+                                    <td class="py-0">{{mejor_valor}}</td>
+                                    <td class="py-0">{{Mejor_val_porc}}</td>
+                                    <td class="py-0">{{valor_pre1}}</td>
+                                    <td class="py-0">{{valor_pre2}}</td>
+                                    <td class="py-0">{{valor_pre3}}</td>
+                                    {{/rows}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pt-0">
+                        <table>
+                            <tbody style="font-size: 12px;">
+                                <tr>
+                                    <td class="py-0 fw-bold text-start" style="width: 50%;">Calidad</td>
+                                    <td class="py-0 text-start">{{Calidad}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold text-start">Conclusiones</td>
+                                    <td class="py-0 text-start">{{conclusion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0" colspan="2">IMPRESIÓN DIAGNÓSTICO</td>
+                                </tr>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0 w-50">CIE10</td>
+                                    <td class="p-0 w-50">DESCRIPCIÓN</td>
+                                </tr>
+                                {{#cie10}}
+                                <tr>
+
+                                    <td class="py-0">{{{diacod}}}</td>
+                                    <td class="py-0">{{{diades}}}</td>
+                                </tr>
+                                {{/cie10}}
+
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0 w-75">Recomendaciones y controles</td>
+                                    <td class="p-0 w-25">Control</td>
+                                </tr>
+                                {{#recomendaciones}}
+                                <tr>
+                                    <td class="py-0">{{{desrec}}}</td>
+                                    <td class="py-0">{{{des_control}}}</td>
+                                </tr>
+                                {{/recomendaciones}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </main>
+
+</body>
+
+</html>
