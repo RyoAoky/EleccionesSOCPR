@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const csrf = require('csurf');
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const controllerrender = require("../controllers/controllerrender");
 const controllerCO = require("../controllers/controllerconfiguracion");
+const csrfProtection = csrf({ cookie: true });
 
 //Login
-router.get('/iniciarsesion', isNotLoggedIn, controllerrender.renderIniciarSesion);
-router.post('/iniciarsesion', isNotLoggedIn, controllerCO.postiniciarSesion);
+router.get('/iniciarsesion', isNotLoggedIn,csrfProtection, controllerrender.renderIniciarSesion);
+router.post('/iniciarsesion', isNotLoggedIn, csrfProtection,controllerCO.postiniciarSesion);
 router.get('/salir', isLoggedIn, controllerCO.CerrarSesion);
 
 //Permisos

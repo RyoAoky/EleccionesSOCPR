@@ -27,7 +27,7 @@ async function permisosprueba(opcsis, ruta, req, res, id) {
 module.exports = {
     //render de Bienvenida   
     async renderIniciarSesion(req, res) {
-        res.render('auth/iniciarsesion', { layout: false });
+        res.render('auth/iniciarsesion', { layout: false, csrfToken: req.csrfToken() });
     },
     async renderbienvenida(req, res) {
         res.render('inicio');
