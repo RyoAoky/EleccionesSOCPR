@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .border {
+            border: 1px solid;
+        }
+
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+        }
+
+        .sin-bordes th,
+        .sin-bordes td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+
+        .FilaOscura {
+            background-color: gainsboro !important;
+        }
+    </style>
+</head>
+
+<body style="max-width: 750px">
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead" style="background-color: white; color: black;">
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 25%;">
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div class="col-12 text-center">
+                                            <h1 class="fw-bold" style="font-size: 16px;">DIAGNOSTICO POR IMAGENES
+                                            </h1>
+                                            <h2 class="fw-bold" style="font-size: 16px;">{{desexadet}}</h2>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start" style="font-size: 10px;">
+                                <tr class="FilaOscura">
+                                    <td colspan="4" class="py-0 fw-bold">DATOS DEL TRABAJADOR</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold" style="width: 20%;">N° de Documento</td>
+                                    <td class="py-0">{{numdoc}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Apellidos y Nombres</td>
+                                    <td class="py-0">{{appm_nom}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Empresa</td>
+                                    <td class="py-0">{{razsoc}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Cargo actual</td>
+                                    <td class="py-0">{{cargo_actual}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Cargo al que postula</td>
+                                    <td class="py-0">{{cargo_actual}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Área de trabajo</td>
+                                    <td class="py-0">{{area_actual}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-0 fw-bold">Puesto de trabajo</td>
+                                    <td class="py-0">{{cargo_actual}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="text-start" style="font-size: 10px;">
+                <tr>
+                    <td class="pb-0 fw-bold">
+                        Fecha de atención: {{fechaAtencion}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody class="text-start">
+                                <tr>
+                                    <td class="py-0 fw-bold">
+                                        NÚMERO DE RADIOGRAFÍA: {{codigo_ref}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="sin-bordes">
+                                            <tr>
+                                                <td class="fw-bold" style="padding: 1px 0px 1px 0;">Detalle del Informe:
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 0px 1px 10px 0;">
+                                                    <textarea name="" id="det_informe"
+                                                        style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;"
+                                                        disabled>{{det_informe}}</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold" style="padding: 1px;">Conclusiones:</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 0px 1px 10px 0;">
+                                                    <textarea name="" id="conclusion"
+                                                        style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;"
+                                                        disabled>{{conclusion}}</textarea>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <!--
+                                            <td id="det_informe" class="py-0" style="height: 200px;">
+                                            {{det_informe}} - {{conclusion}}
+                                        </td>
+                                        -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="width: 100%; ">
+                            <tbody>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0" colspan="2">IMPRESIÓN DIAGNÓSTICO</td>
+                                </tr>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0 w-50">CIE10</td>
+                                    <td class="p-0 w-50">DESCRIPCIÓN</td>
+                                </tr>
+                                {{#cie10Img}}
+                                <tr>
+                                    <td class="py-0">{{{diacod}}}</td>
+                                    <td class="py-0">{{{diades}}}</td>
+                                </tr>
+                                {{/cie10Img}}
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="width: 100%; ">
+                            <tbody>
+                                <tr class="fw-bold text-center FilaOscura">
+                                    <td class="p-0 w-75">Recomendaciones y controles</td>
+                                    <td class="p-0 w-25">Control</td>
+                                </tr>
+                                {{#recomendacionesImg}}
+                                <tr>
+                                    <td class="py-0">{{{desrec}}}</td>
+                                    <td class="py-0">{{{des_control}}}</td>
+                                </tr>
+                                {{/recomendacionesImg}}
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function Ajustar(textareaId) {
+            var textarea = document.getElementById(textareaId);
+            if (textarea) {
+                textarea.style.height = "auto";
+                textarea.style.height = textarea.scrollHeight + "px";
+            }
+        }
+        window.addEventListener('load', function () {
+            Ajustar("det_informe");
+            Ajustar("conclusion");
+        });
+    </script>
+</body>
+
+</html>

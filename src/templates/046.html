@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap">
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead ">
+                <tr>
+                    <td class="text-center">
+                        <h6 class="fw-bold">CERTIFICADO DE APTITUD MÉDICO OCUPACIONAL</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered" style="width: 100%; ">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 60%;"><img
+                                            src="https://grupo.clinicasanpedro.com/src/public/img/logo.png"
+                                            alt="Imagen 1" class="img-fluid" style="width: 70%;"></td>
+                                    <td class="text-center fw-bold">CÓDIGO</td>
+                                    <td class="text-center">{{numdoc}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center fw-bold">
+                    <td>Certifica que el Sr.(a):</td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered" style="width: 100%; ">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="2">Nombres y Apellidos</td>
+                                    <td class="p-0 ps-1" colspan="7">{{appm_nom}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="1">Documento de identidad</td>
+                                    <td class="p-0 ps-1">{{numdoc}}</td>
+                                    <td class="p-0 ps-1 fw-bold" colspan="2">Edad</td>
+                                    <td class="p-0 ps-1">{{Edad}}</td>
+                                    <td class="p-0 ps-1 fw-bold" colspan="2">Género</td>
+                                    <td class="p-0 ps-1" colspan="2">{{des_sexo}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold">Tipo de Evaluación </td>
+                                    <td class="p-0 ps-1 fw-bold" style="width: 13%;">Pre Ocupacional</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 5%;">{{preocuficha}}</td>
+                                    <td class="p-0 ps-1 fw-bold">Periódica</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 5%;">{{periodicaficha}}</td>
+                                    <td class="p-0 ps-1 fw-bold">Retiro</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 5%;">{{retiroficha}}</td>
+                                    <td class="p-0 ps-1 fw-bold">Otros</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 5%;">{{otrosficha}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Protocolo de Examen Médico</td>
+                                    <td class="p-0 ps-1" colspan="5">{{nompro}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Puesto al que postula</td>
+                                    <td class="p-0 ps-1" colspan="5">{{cargo_actual}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Ocupación Actual o última Ocupación</td>
+                                    <td class="p-0 ps-1" colspan="5">{{cargo_actual}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Empresa</td>
+                                    <td class="p-0 ps-1" colspan="5">{{razsoc}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">N° de Historia Clínica:</td>
+                                    <td class="p-0 ps-1" colspan="5">{{numdoc}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Alergias:</td>
+                                    <td class="p-0 ps-1" colspan="5">{{ap_alergias}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered" style="width: 100%; ">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="6">Conclusiones:</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4" style="width: 40%;">Apto
+                                        (para el puesto en el que trabaja o
+                                        postula)
+                                    </td>
+                                    <td class="p-0 ps-1 text-center" style="width: 10%;">{{Apto}}</td>
+                                    <td class="p-0 ps-1" rowspan="5">
+                                        Restricciones:
+                                        <textarea  type="text" id="restricciones"
+                                            style="border: none;  resize: none; font-size: 100%; overflow: hidden; width: 100%;">{{restricciones}}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Apto con Restricciones
+                                        (para el puesto en el que trabaja o
+                                        postula)
+                                    </td>
+                                    <td class="p-0 ps-1 text-center">{{AptoRestri}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">No Apto
+                                        (para el puesto en el que trabaja o
+                                        postula)
+                                    </td>
+                                    <td class="p-0 ps-1 text-center">{{NoApto}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Con Observaciones
+                                        (para el puesto en el que trabaja o
+                                        postula)
+                                    </td>
+                                    <td class="p-0 ps-1 text-center">{{Obser}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="4">Evaluado
+                                    </td>
+                                    <td class="p-0 ps-1 text-center">{{Evaluado}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered" style="width: 100%; ">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    <td class="p-0 ps-1 fw-bold" colspan="3">Recomendaciones:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width: 60%; vertical-align: top;">
+                                        <table class="sin-bordes">
+                                            <tbody>
+                                                {{#recomendaciones}}
+                                                <tr>
+                                                    <td style="padding: 1px;"><strong>{{numeracion}}.-
+                                                        </strong>{{desrec}}</td>
+                                                </tr>
+                                                {{/recomendaciones}}
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table class="sin-bordes">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <input type="hidden" value="{{med_firma}}" class="firma"
+                                                            id="firma"
+                                                            style="width: 80%; margin: 5px; margin-top: 8px;">
+                                                        <canvas class="canvas" id="canvas"
+                                                            style="width: 100%; height: 120px;"></canvas>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center p-0">Sello y Firma del Médico que Certifica
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center p-0">Nombre: {{medapmn_proto}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Fecha del Examen: {{fechaAtencion}}</td>
+                                    <td class="text-center">Número del CMP: {{med_cmp_proto}}</td>
+                                </tr>
+                                <tr>
+                                    <td id="fechaCaducidad" colspan="3">Fecha de caducidad: {{fecvcto_cermed}}</td>
+                                </tr>
+                                <tr>
+                                    <td id="TiempoCaducidad" colspan="3">Tiempo de validez: {{tiemval_cermed}} año</td>
+                                </tr>
+                                <input type="hidden" id="cadcermedInput" value="{{cadcermed}}">
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            cargarFirma("firma", "canvas");
+            od();
+        });
+
+        function actualizarEstilo() {
+            var cadcermed = document.getElementById("cadcermedInput").value;
+            var fechaCaducidad = document.getElementById("fechaCaducidad");
+            var TiempoCaducidad = document.getElementById("TiempoCaducidad");
+
+            // Si accion es "N", oculta las filas
+            if (cadcermed === "N") {
+                fechaCaducidad.style.display = "none";
+                TiempoCaducidad.style.display = "none";
+            } else {
+                fechaCaducidad.style.display = "";
+                TiempoCaducidad.style.display = "";
+            }
+        }
+        actualizarEstilo();
+
+        function cargarFirma(inputId, canvasId) {
+            let imgb64 = document.getElementById(inputId).value;
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext("2d");
+            const imagen = new Image();
+            imagen.onload = function () {
+                // Set canvas dimensions to match image dimensions
+                canvas.width = imagen.width;
+                canvas.height = imagen.height;
+
+                // Draw the image on the canvas at original size
+                ctx.drawImage(imagen, 0, 0);
+            };
+
+            imagen.src = "data:image/webp;base64," + imgb64;
+        }
+        function Ajustar(textareaId) {
+            var textarea = document.getElementById(textareaId);
+            if (textarea) {
+                textarea.style.height = "auto";
+                textarea.style.height = textarea.scrollHeight + "px";
+            }
+        }
+        window.addEventListener('load', function () {
+            Ajustar("restricciones");
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<script src="/js/jquery-clock-timepicker.js"></script>
+<div>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 tituloverde">Entidades</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active">Cita</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="left-content">
+                    <i class="fas fa-table me-1"></i>
+                    <label id="tituloEncabezado">Ingrese nueva cita</label>
+                </div>
+                <button class="btn position-relative" style="background-color: #793B8E; color: white; padding:0px"
+                    id="btnCita" type="submit" onclick="Grabar()">
+                    <i class="fa-regular fa-floppy-disk" style="margin: 8px 12px;"></i>
+                </button>
+            </div>
+            <div class="card-body " style="max-height: 70vh; overflow-y: auto;">
+                <div class="container-fluid body1" id="body1">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="p-3 py-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="text-right">Datos de la cita</h5>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4 form-inline col-sm-12 form-group ">
+                                        <label class="labels mb-2">Empresa</label>
+                                        <div class="input-group input-group-sm" style="width: 100%;">
+                                            <input type="text" id="razsoc" class="form-control form-control-sm"
+                                                placeholder="Nombre de la empresa" aria-label="" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="labels" for="codpro_id">Protocolo</label>
+                                        <input type="text" id="nompro" class="form-control form-control-sm"
+                                            placeholder="Nombre del protocolo" aria-label="" disabled>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="labels" for="desexa">Tipo de exámen</label>
+                                        <input type="text" class="form-control form-control-sm" id="desexa" disabled>
+                                    </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4 form-inline col-sm-12 form-group ">
+                                        <label class="labels mb-2">Paciente</label>
+                                        <div class="input-group input-group-sm" style="width: 100%;">
+                                            <input type="text" id="appm_nom" class="form-control form-control-sm"
+                                                placeholder="Nombre del paciente" aria-label="appm_nom" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="fecprocitaDate" class="labels">Fecha
+                                            Programada</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <input type="date" class="form-control form-control-sm mr-2"
+                                                id="fecprocitaDate" data-mask="dd/mm/yyyy" disabled>
+                                            <input type="text" id="fecprocitaTime"
+                                                class="time form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 py-3">
+                                <div class="row mt-2 ">
+                                    <div class="col-md-12">
+                                        <label for="obscita" class="labels">Observación</label>
+                                        <textarea class="form-control form-control-sm mr-2"
+                                            placeholder="Ingresar observación" id="obscita" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="p-3 py-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="text-right">Datos adicionales del paciente</h5>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3">
+                                        <label class="labels" for="cargo_actual">Cargo actual</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Ingrese su cargo" oninput="limitarInput(event,40);"
+                                                data-nombre="Cargo actual" id="cargo_actual" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="labels" for="fecing_cargo">Fecha de ingreso al
+                                            cargo</label><input type="date" class="form-control btn-sm"
+                                            id="fecing_cargo" min="1900-01-01" max="2100-12-31" step="1" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="labels" for="area_actual">Área</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Ingrese su área" oninput="limitarInput(event,40);"
+                                                data-nombre="Área" id="area_actual" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="labels" for="fecing_area">Fecha de ingreso al
+                                            área</label><input type="date" class="form-control btn-sm" id="fecing_area"
+                                            min="1900-01-01" max="2100-12-31" step="1" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="labels" for="fecing_empresa">Fecha de ingreso a la
+                                            empresa</label><input type="date" class="form-control btn-sm"
+                                            id="fecing_empresa" min="1900-01-01" max="2100-12-31" step="1" required>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+
+                                    <div class="col-md-3">
+                                        <label class="labels" for="altilab_id">Altitud de la labor</label><select
+                                            class="form-select form-control form-control-sm" id="altilab_id"
+                                            aria-label="Default select example" required>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="labels" for="superf_id">Superficie</label><select
+                                            class="form-select form-control form-control-sm" id="superf_id"
+                                            aria-label="Default select example" required>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="labels" for="tipseg_id">Seguro</label><select
+                                            class="form-select form-control form-control-sm" id="tipseg_id"
+                                            aria-label="Default select example" required>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col bloque" id="cond_vehiculo">
+                                        <label for="cond_vehiculo" class="labels">Conduce vehículo</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="cond_vehiculo" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="cond_vehiculo" required>SI</label>
+                                            <label for="cond_vehiculo" class=""><input type="radio" class="me-2"
+                                                    value="N" name="cond_vehiculo" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="ope_equipo_pesado">
+                                        <label class="labels" for="ope_equipo_pesado">Opera vehículo pesado</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="ope_equipo_pesado" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="ope_equipo_pesado" required>SI</label>
+                                            <label for="ope_equipo_pesado" class=""><input type="radio" class="me-2"
+                                                    value="N" name="ope_equipo_pesado" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="envresult_correo">
+                                        <label for="envresult_correo" class="labels">Enviar resultados por
+                                            correo</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="envresult_correo" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="envresult_correo" required>SI</label>
+
+                                            <label for="envresult_correo" class=""><input type="radio" class="me-2"
+                                                    value="N" name="envresult_correo" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="com_info_medica">
+                                        <label for="com_info_medica" class="labels">Comparte información médica</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="com_info_medica" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="com_info_medica" required>SI</label>
+                                            <label for="com_info_medica" class=""><input type="radio" class="me-2"
+                                                    value="N" name="com_info_medica" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="ent_result_fisico">
+                                        <label for="ent_result_fisico" class="labels">Entrega de resultado en
+                                            físico</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="ent_result_fisico" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="ent_result_fisico" required>SI</label>
+                                            <label for="ent_result_fisico" class=""><input type="radio" class="me-2"
+                                                    value="N" name="ent_result_fisico" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="usa_firma_formatos">
+                                        <label for="usa_firma_formatos" class="labels">Usar firma escaneada en
+                                            formatos</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="usa_firma_formatos" class="mr-4"><input type="radio"
+                                                    class="me-2" value="S" name="usa_firma_formatos" required>SI</label>
+                                            <label for="usa_firma_formatos" class=""><input type="radio" class="me-2"
+                                                    value="N" name="usa_firma_formatos" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="res_lugar_trabajo">
+                                        <label for="res_lugar_trabajo" class="labels">Reside en lugar de trabajo</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="res_lugar_trabajo" class="mr-4"><input type="radio" class="me-2"
+                                                    value="S" name="res_lugar_trabajo" required>SI</label>
+                                            <label for="res_lugar_trabajo" class=""><input type="radio" class="me-2"
+                                                    value="N" name="res_lugar_trabajo" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="inputid" value="{{id}}" style="display: none;">
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Scripts-->
+<script src="/js/entidades/citaCreateAdmin.js"> </script>

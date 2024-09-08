@@ -1,0 +1,376 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"
+    integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="container-fluid px-4">
+    <h1 class="mt-4 tituloverde">Entidades</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+        <li class="breadcrumb-item active">Rangos</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="left-content">
+                <i class="fas fa-table me-1"></i>
+                Consulte los Rangos de referencia
+            </div>
+        </div>
+        <div class="card-body body1">
+            <div class="container-fluid body1">
+                <div class="row">
+                    <div class="col-md-4 form-inline col-sm-12 form-group mb-1 mt-1">
+                        <div class="input-group input-group-sm" style="width: 100%;">
+                            <label class="input-group-text form-control-sm" for="razsoc">Examen</label>
+                            <input type="hidden" id="codpru_id" value="0">
+                            <input type="text" id="desexadet" class="form-control form-control-sm"
+                                placeholder="Nombre del Examen" aria-label="" disabled>
+                            <button type="button" class="btn input-group-text" data-toggle="modal"
+                                data-target="#modalFormExamen">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-8 form-inline col-sm-12 form-group mb-1 mt-1 justify-content-end">
+                        <button id="btnNuevoRango" type="button" class="btn btn-sm w-25 rounded" data-id="0"
+                            style="background-color: #793B8E; color: white; display: none;" data-toggle="modal"
+                            data-target="#modalRegistroRango" onclick="CambiarTitutlo('Grabar');"><i
+                                class="fa-solid fa-ruler" style="padding-right: 8%;"></i>Nuevo rango
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 border-right">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Lista de Parametros</h4>
+                            <!--<button id="btnNuevoParametro" type="button" class="btn btn-sm w-25 rounded"
+                                style="background-color: #793B8E; color: white; display: none;" data-toggle="modal"
+                                data-target="#modalRegistroParametro" >Nuevo
+                                parametro
+                            </button>
+                            -->
+                        </div>
+                        <input type="hidden" id="parexa_id" value="0">
+                        <div class="table-responsive scrollable-modal" id="tablaparametros">
+                            <table class="records_list table table-sm table-striped table-bordered letra animate__animated animate__fadeInDown"
+                                id="tableparexa" style="display: none;">
+                                <thead class="thead sticky-top">
+                                    <tr>
+                                        <th scope="col">PARAMETRO</th>
+                                        <th scope="col">ACCIONES</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyParametro">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center" id="cargaparexa" style="display: none;">
+                            <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                                <lottie-player src="../img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                    style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right" id="tituloRegistro">Registro de Rango de Referencia</h4>
+                        </div>
+                        <div class="table-responsive scrollable-modal" id="tablaRangos">
+                            <table class="records_list table table-sm table-striped table-bordered letra animate__animated animate__fadeInDown"
+                                id="tableRangos" style="display: none;">
+                                <thead class="thead sticky-top">
+                                    <tr>
+                                        <th scope="col">Edad Inicial</th>
+                                        <th scope="col">Edad Final</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Rango</th>
+                                        <th scope="col">Rango normal</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Valor referencial</th>
+                                        <th scope="col">Metodo</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyRangos">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center" id="cargaRangos" style="display: none;">
+                            <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                                <lottie-player src="../img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                    style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="inputid" value="0" style="display: none;">
+                <input type="text" id="despar" value="" style="display: none;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Examen-->
+<div class="modal fade" id="modalFormExamen" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0FA0A7;color: white;border-color: #0FA0A7;">
+                <h4 class="modal-title" id="myModalLabel">BUSQUEDA DE EXAMEN</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group-sm" style="width: 100%;">
+                    <label class="control-label input-group-text" for="empresamodal">EXAMEN</label>
+                    <input class="form-control form-control-sm " id="examenmodal"
+                        placeholder="Ingrese el nombre del Examen" required></input>
+                    <button type="button" class="btn input-group-text" id="searchExamen" onclick="GetPruebaExamen()">
+                        <i class="fa-solid fa-magnifying-glass"></i></label>
+                    </button>
+                </div>
+                <div class="row mb-2 mt-2">
+                    <div class="table-responsive">
+                        <table
+                            class="records_list table table-sm table-hover letra animate__animated animate__fadeInDown"
+                            id="tableExamenmodal" style="display: none;">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">EXAMEN</th>
+                                    <th scope="col">ACCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyExamen" style="text-align: left;">
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="text-center" id="cargaExamen" style="display: none;">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                            <lottie-player src="/img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn"
+                        style="background-color: #793B8E;color: white;border-color: #793B8E;" id="cerrarExamenModal"
+                        data-dismiss="modal"> <i class="fa-solid fa-circle-xmark"></i>
+                        Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Registro de Rangos-->
+<div class="modal fade" id="modalRegistroRango" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0FA0A7;color: white;border-color: #0FA0A7;">
+                <h4 class="modal-title" id="titleMFormatos"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="codlabuni_id" class="input-group-text">Unidad</label>
+                                <select class="form-select form-control form-control-sm" id="codlabuni_id"
+                                    aria-label="Default select example">
+                                </select>
+                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="sexo_id" class="input-group-text">Sexo</label>
+                                <select class="form-select form-control form-control-sm" id="sexo_id"
+                                    aria-label="Default select example">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="rango_ini" class="input-group-text">Rango inicial</label>
+                                <input type="decimal" class="form-control form-control-sm text-start"
+                                    placeholder="Ingrese el rango inicial" id="rango_ini" value=""
+                                    oninput="limitarInput(event,50);" data-nombre="Rango inicial" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="rango_fin" class="input-group-text">Rango final</label>
+                                <input type="text" class="form-control form-control-sm text-start"
+                                    placeholder="Ingrese el rango final" id="rango_fin" value=""
+                                    oninput="limitarInput(event,50);" data-nombre="Rango final" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="edad_inicio" class="input-group-text">Edad inicial</label>
+                                <input class="form-control form-control-sm" placeholder="Ingrese la edad inicial"
+                                    id="edad_inicio" value="" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="edad_fin" class="input-group-text">Edad final</label>
+                                <input class="form-control form-control-sm" placeholder="Ingrese la edad final"
+                                    id="edad_fin" value="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="desrango" class="input-group-text">Descripción Rango</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="Descripción rango"
+                                    id="desrango" value="" oninput="limitarInput(event,20);"
+                                    data-nombre="Descripción Rango" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="sta_rango_normal" class="input-group-text">Rango normal</label>
+                                <select class="form-select form-control form-control-sm" id="sta_rango_normal">
+                                    <option value="S" selected>SI</option>
+                                    <option value="N">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <label for="valor_ref" class="input-group-text">Valor referencial</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="Valor referencial"
+                                    id="valor_ref" value="" oninput="limitarInput(event,40);"
+                                    data-nombre="Valor referencial" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6    ">
+                            <div class="input-group input-group-sm">
+                                <label for="metodo" class="input-group-text">Metodo</label>
+                                <input type="text" class="form-control form-control-sm" placeholder="Metodo" id="metodo"
+                                    value="" oninput="limitarInput(event,60);" data-nombre="Metodo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn" id="btnGrabar"
+                        style="background-color: #793B8E;color: white;border-color: #793B8E;" onclick="GrabarRango()">
+                        <i class="fa-regular fa-floppy-disk" style="padding-right: 8%;"></i>Grabar</button>
+                    <button type="button" class="btn" id="btnCerrar"
+                        style="background-color: #793B8E;color: white;border-color: #793B8E;" id="cerrarFormatosModal"
+                        data-dismiss="modal"> <i class="fa-solid fa-circle-xmark"></i>
+                        Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Registro de Parametros-->
+<!--
+<div class="modal fade" id="modalRegistroParametro" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0FA0A7;color: white;border-color: #0FA0A7;">
+                <h4 class="modal-title" id="titleMFormatos">Registro de Parametro</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group-sm" style="width: 100%;">
+                    <label class="control-label input-group-text" for="codlabunimodal">PARAMETRO</label>
+                    <input class="form-control form-control-sm " id="parametromodal"
+                        placeholder="Ingrese el nombre de la unidad" required></input>
+                    <button type="button" class="btn input-group-text" id="searchparametro" onclick="GetParametroExamen2()">
+                        <i class="fa-solid fa-magnifying-glass"></i></label>
+                    </button>
+                </div>
+                <div class="row mb-2 mt-2">
+                    <div class="table-responsive">
+                        <table class="records_list table table-sm table-hover letra animate_animated animate_fadeInDown"
+                            id="tableparametro" style="display: none;">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">ACCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyparametro2">
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="text-center" id="cargaparametro" style="display: none;">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                            <lottie-player src="/img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="button" class="btn"
+                        style="background-color: #793B8E;color: white;border-color: #793B8E;" id="cerrarFormatosModal"
+                        data-dismiss="modal"> <i class="fa-solid fa-circle-xmark"></i>
+                        Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+-->
+
+<!--Modal codlabuni-->
+<div class="modal fade" id="modalcodlabuni" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0FA0A7;color: white;border-color: #0FA0A7;">
+                <h4 class="modal-title" id="myModalLabel">BUSQUEDA DE UNIDAD DE LABORATORIO</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group-sm" style="width: 100%;">
+                    <label class="control-label input-group-text" for="codlabunimodal">UNIDAD</label>
+                    <input class="form-control form-control-sm " id="codlabunimodal"
+                        placeholder="Ingrese el nombre de la unidad" required></input>
+                    <button type="button" class="btn input-group-text" id="searchcodlabuni" onclick="GetUnidadExamen()">
+                        <i class="fa-solid fa-magnifying-glass"></i></label>
+                    </button>
+                </div>
+                <div class="row mb-2 mt-2">
+                    <div class="table-responsive">
+                        <table class="records_list table table-sm table-hover letra animate_animated animate_fadeInDown"
+                            id="tablecodlabuni" style="display: none;">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">ACCIÓN</th>
+                                    <th scope="col">NOMBRE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodycodlabuni">
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="text-center" id="cargacodlabuni" style="display: none;">
+                        <div class="d-flex justify-content-center align-items-center" style="min-height: 5vh;">
+                            <lottie-player src="/img/jsonimg/Cargahealth.json" background="transparent" speed="1"
+                                style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn"
+                        style="background-color: #793B8E;color: white;border-color: #793B8E;" id="cerrarcodlabuni"
+                        data-dismiss="modal"> <i class="fa-solid fa-circle-xmark"></i>
+                        Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/entidades/rangos.js"> </script>

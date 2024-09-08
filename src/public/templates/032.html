@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid;
+        }
+
+        .border {
+            border: 1px solid;
+        }
+
+        .no-border-bottom {
+            border-bottom: none;
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+        }
+
+        .sin-bordes td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+
+        .page-2 {
+            page-break-before: always;
+        }
+
+        .borderpsico {
+            border: 1px solid black !important;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div>
+            <table class="sin-bordes">
+                <thead class="thead" style="background-color: white; color: black;">
+                    <tr>
+                        <td>
+                            <table class="sin-bordes">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 25%;">
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <div class="text-center">
+                                                <h1 class="fw-bold" style="font-size: 16px;">FICHA PSICOLÓGICO
+                                                    OCUPACIONAL
+                                                </h1>
+                                            </div>
+                                        </td>
+                                        <td style="width: 25%;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="records_list table-sm table-bordered" style="font-size: 8px; width: 100%; ">
+                                <thead class="fw-bold text-center" style="background-color: gainsboro; color: black;">
+                                    <th class="p-0 borderpsico" style="width: 6%;">DNI</th>
+                                    <th class="p-0 borderpsico" style="width: 24%;">Nombres y Apellidos</th>
+                                    <th class="p-0 borderpsico" style="width: 7%;">Fec. Nac.</th>
+                                    <th class="p-0 borderpsico" style="width: 6%;">Edad</th>
+                                    <th class="p-0 borderpsico" style="width: 7%;">Sexo</th>
+                                    <th class="p-0 borderpsico" style="width: 17%;">Cargo</th>
+                                    <th class="p-0 borderpsico" style="width: 21%;">Empresa</th>
+                                    <th class="p-0 borderpsico" style="width: 12%;">Tipo Evaluación</th>
+                                </thead>
+                                <tbody>
+                                    <td class="py-0 borderpsico text-start">{{numdoc}}</td>
+                                    <td class="py-0 borderpsico">{{appm_nom}}</td>
+                                    <td class="py-0 text-center borderpsico">{{fecnac}}</td>
+                                    <td class="py-0 text-center borderpsico">{{Edad}}</td>
+                                    <td class="py-0 text-center borderpsico">{{des_sexo}}</td>
+                                    <td class="py-0 borderpsico text-start">{{cargo_actual}}</td>
+                                    <td class="py-0 borderpsico text-start">{{razsoc}}</td>
+                                    <td class="py-0 borderpsico text-start">{{desexa}}</td>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 10px;">
+                    <tr>
+                        <td class="text-start" style="padding: 1px 10px;">Fecha de Atención: {{fechaAtencion}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">I.- MOTIVO DE EVALUACIÓN:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0"><textarea name="" id="mot_eva"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{mot_eva}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="10" class="fw-bold py-0">II.- DATOS OCUPACIONALES:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="10" class="py-0 fw-bold">3.1 EMPRESA ACTUAL (postula, trabaja o
+                                            trabajó)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0 fw-bold">
+                                            Nombre de la Empresa:
+                                        </td>
+                                        <td colspan="9" class="py-0">{{razsoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0 fw-bold">Actividad de la Empresa:</td>
+                                        <td colspan="9" class="py-0">{{actividad_economica_clie}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Área de trabajo</td>
+                                        <td colspan="4" class="py-0">{{area_actual}}</td>
+                                        <td class="fw-bold py-0" style="width: 10%;">Tiempo total laborando</td>
+                                        <td colspan="4" class="py-0">{{tiem_lab}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Superficie </td>
+                                        <td class="py-0 text-center">( {{superSuper}} )</td>
+                                        <td class="py-0">Subsuelo </td>
+                                        <td class="py-0 text-center">( {{superSubsu}} )</td>
+                                        <td class="py-0">Concentradora </td>
+                                        <td class="py-0 text-center">( {{superConce}} )</td>
+                                        <td class="py-0">Socavon </td>
+                                        <td class="py-0 text-center">( {{superSoca}} )</td>
+                                        <td class="py-0">No especifica </td>
+                                        <td class="py-0 text-center">( {{superNoEsp}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0 fw-bold" colspan="14"><u>Principales riesgos</u></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="14">
+                                            <textarea name="" id="prin_riesgos"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{prin_riesgos}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0 fw-bold" colspan="14"><u>Medidas de seguridad</u></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="14"><textarea name="" id="med_seguridad"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{med_seguridad}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="14" class="py-0 fw-bold">3.2 ANTERIORES EMPRESAS: (experiencia
+                                            laboral)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0 text-center fw-bold" style="width: 15%;">Fecha</td>
+                                        <td colspan="2" class="py-0 text-center fw-bold">Nombre de la Empresa</td>
+                                        <td colspan="2" class="py-0 text-center fw-bold">Act. de la Empresa</td>
+                                        <td colspan="2" class="py-0 text-center fw-bold">Puesto</td>
+                                        <td class="py-0 text-center fw-bold" style="width: 10%;">Tiempo</td>
+                                        <td colspan="2" class="py-0 text-center fw-bold" style="width: 20%;">Causa
+                                            del
+                                            retiro</td>
+                                    </tr>
+                                    {{#Arrayant_empresas}}
+                                    <tr>
+                                        <td class="py-0 text-center">{{{fecha}}}</td>
+                                        <td colspan="2" class="py-0 text-center">{{{nombemp}}}</td>
+                                        <td colspan="2" class="py-0 text-center">{{{actiemp}}}</td>
+                                        <td colspan="2" class="py-0 text-center">{{{puesto}}}</td>
+                                        <td class="py-0 text-center">{{{tiempo}}}</td>
+                                        <td colspan="2" class="py-0 text-center">{{{causaret}}}</td>
+                                    </tr>
+                                    {{/Arrayant_empresas}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0">III.- HISTORIA FAMILIAR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><textarea name="" id="historia_familiar"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{historia_familiar}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0">IV.- ACCIDENTES Y ENFERMEDADES (durante el tiempo
+                                            de
+                                            trabajo)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><textarea name="" id="accid_enfer"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{accid_enfer}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0">V.- HÁBITOS (pasatiempos, consumo de tabaco,
+                                            alcohol
+                                            y/o drogas)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><textarea name="" id="habitos"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{habitos}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0">VI.- OTRAS OBSERVACIONES</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{otras_observ}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">VII.-RESULTADOS DE EVALUACIÓN
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width: 70px;">Nivel Intelectual:</td>
+                                        <td class="py-0">{{re_nivel_inte}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Coordinación Visomotriz:
+                                        </td>
+                                        <td class="py-0">{{re_coord_visomotriz}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Nivel de Memoria:
+                                        </td>
+                                        <td class="py-0">{{re_nivel_memoria}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Personalidad:
+                                        </td>
+                                        <td class="py-0">{{re_personalidad}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Afectividad:
+                                        </td>
+                                        <td class="py-0">{{re_afectividad}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="8" class="fw-bold py-0">VIII.- EXAMEN MENTAL:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" class="py-0 fw-bold">8.1 OBSERVACIÓN DE CONDUCTAS
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Presentación</td>
+                                        <td colspan="2" class="py-0">Adecuado</td>
+                                        <td class="py-0 text-center">( {{cod_presentAde}} )</td>
+                                        <td class="py-0" colspan="2">Inadecuado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{cod_presentIna}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Postura</td>
+                                        <td colspan="2" class="py-0">Erguida</td>
+                                        <td class="py-0 text-center">( {{cod_posturaErg}} )</td>
+                                        <td class="py-0" colspan="2">Encorvada</td>
+                                        <td class="py-0 text-center" colspan="2">( {{cod_posturaEnc}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width: 15%;" rowspan="3">Discurso
+                                        </td>
+                                        <td class="fw-bold py-0" style="width: 15%;">Ritmo</td>
+                                        <td class="py-0" style="width: 15%;">Lento</td>
+                                        <td class="py-0 text-center" style="width: 10%;">( {{dis_ritmoLent}} )
+                                        </td>
+                                        <td class="py-0" style="width: 15%;">Rápido</td>
+                                        <td class="py-0 text-center" style="width: 12%;">( {{dis_ritmoRap}} )
+                                        </td>
+                                        <td class="py-0" style="width: 10%;">Fluído</td>
+                                        <td class="py-0 text-center" style="width: 8%;">( {{dis_ritmoFlu}} )
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Tono</td>
+                                        <td class="py-0">Bajo</td>
+                                        <td class="py-0 text-center">( {{dis_tonoBajo}} )</td>
+                                        <td class="py-0">Moderado</td>
+                                        <td class="py-0 text-center">( {{dis_tonoMode}} )</td>
+                                        <td class="py-0">Alto</td>
+                                        <td class="py-0 text-center">( {{dis_tonoAlto}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Articulación</td>
+                                        <td class="py-0">Con dificultad</td>
+                                        <td class="py-0 text-center">( {{dis_articulacionConDif}} )</td>
+                                        <td class="py-0">Sin dificultad</td>
+                                        <td class="py-0 text-center">( {{dis_articulacionSinDis}} )</td>
+                                        <td class="py-0" colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" rowspan="3">Orientación</td>
+                                        <td class="fw-bold py-0">Tiempo</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_tiempoOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_tiempoDeso}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Espacio</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_espacioOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_espacioDeso}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Persona</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_personaOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_personaDeso}} )</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr>
+                                        <td colspan="8" class="py-0 fw-bold">8.2 PROCESOS COGNITIVOS</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Lúcido, atento</td>
+                                        <td class="py-0" colspan="12">{{pro_cog_lucido_atento}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Pensamiento</td>
+                                        <td class="py-0" colspan="12">{{pro_cog_pensamiento}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Percepción</td>
+                                        <td class="py-0" colspan="12">{{pro_cog_percepcion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Memoria</td>
+                                        <td colspan="" class="py-0">Corto Plazo</td>
+                                        <td class="py-0 text-center" style="width: 7%;">
+                                            ( {{pro_cog_memoriaCortPlazo}} )</td>
+                                        <td class="py-0">Mediano Plazo</td>
+                                        <td class="py-0 text-center" style="width: 7%;">
+                                            ( {{pro_cog_percepcionMediPlazo}} )</td>
+                                        <td class="py-0">Largo Plazo</td>
+                                        <td class="py-0 text-center" style="width: 7%;">
+                                            ( {{pro_cog_percepcionLargPlazo}} )</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold py-0" rowspan="4">Inteligencia</td>
+                                        <td class="py-0">Muy Superior</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaMuySup}} )</td>
+                                        <td class="py-0">Superior</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaSup}} )</td>
+                                        <td class="py-0">Normal Brillane</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaNorBri}} )</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Normal Promedio</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaNorPro}} )</td>
+                                        <td class="py-0">Normal Torpe</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaNorTor}} )</td>
+                                        <td class="py-0">Fronterizo</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaFro}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">RM Leve</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaRMLev}} )</td>
+                                        <td class="py-0">RM Moderado</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaRMMod}} )</td>
+                                        <td class="py-0">RM Severo</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaRMSev}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">RM Profundo</td>
+                                        <td class="py-0 text-center">( {{pro_cog_inteligenciaRMPro}} )</td>
+                                        <td colspan="4"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Apetito</td>
+                                        <td class="py-0" colspan="6">{{pro_cog_apetito}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Sueño</td>
+                                        <td class="py-0" colspan="6">{{pro_cog_sueño}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Conducta Sexual</td>
+                                        <td class="py-0" colspan="6">{{conducta_sexual}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0">Pruebas Psicológicas</td>
+                                        <td class="fw-bold py-0">Resultado</td>
+                                    </tr>
+                                    {{#ArrayTest}}
+                                    <tr>
+                                        <td class="py-0">{{{desexadet}}}</td>
+                                        <td class="py-0">{{{valor_test}}}</td>
+                                    </tr>
+                                    {{/ArrayTest}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">IX.- DIAGNÓSTICO FINAL:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width:15%">Área Cognitiva
+                                        </td>
+                                        <td class="py-0"><textarea name="" id="con_area_cognitiva"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{con_area_cognitiva}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Área Emocional
+                                        </td>
+                                        <td class="py-0"><textarea name="" id="con_area_emocional"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{con_area_emocional}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width:15%">Aptitud
+                                        </td>
+                                        <td class="py-0">{{tipresult_idData}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width: 100%; ">
+                                <tbody>
+                                    <tr class="fw-bold text-center" style=" background-color: gainsboro;">
+                                        <td class="p-0" colspan="2">IMPRESIÓN DIAGNÓSTICO</td>
+                                    </tr>
+                                    <tr class="fw-bold text-center" style=" background-color: gainsboro;">
+                                        <td class="p-0 w-50">CIE10</td>
+                                        <td class="p-0 w-50">DESCRIPCIÓN</td>
+                                    </tr>
+                                    {{#cie10}}
+                                    <tr>
+                                        <td class="py-0">{{{diacod}}}</td>
+                                        <td class="py-0">{{{diades}}}</td>
+                                    </tr>
+                                    {{/cie10}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width: 100%; ">
+                                <tbody>
+                                    <tr class="fw-bold text-center" style=" background-color: gainsboro;">
+                                        <td class="p-0 w-75">Recomendaciones y controles</td>
+                                        <td class="p-0 w-25">Control</td>
+                                    </tr>
+                                    {{#recomendaciones}}
+                                    <tr>
+                                        <td class="py-0">{{{desrec}}}</td>
+                                        <td class="py-0">{{{des_control}}}</td>
+                                    </tr>
+                                    {{/recomendaciones}}
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-2">
+            <table class="sin-bordes">
+                <thead class="thead" style="background-color: white; color: black;">
+                    <tr>
+                        <td>
+                            <table class="sin-bordes">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <div class="text-star mb-1">
+                                                <img src="https://grupo.clinicasanpedro.com/src/public/img/logo.png"
+                                                    alt="Imagen 1" class="img-fluid"
+                                                    style="width: 120px; height: auto;">
+                                            </div>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <div class="text-center">
+                                                <h1 class="fw-bold" style="font-size: 16px;">FICHA PSICOLÓGICO
+                                                    OCUPACIONAL
+                                                </h1>
+                                            </div>
+                                        </td>
+                                        <td style="width: 25%;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 10px;">
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td class="fw-bold py-0" colspan="6">I.- DATOS GENERALES:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0" style="width: 17%;">Apellido y Nombres:</td>
+                                        <td colspan="5" class="py-0">{{appm_nom}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Edad:</td>
+                                        <td class="py-0">{{Edad}}</td>
+                                        <td class="py-0" style="width: 14%;">Lugar de Nacimiento:</td>
+                                        <td class="py-0">{{lugarNacimiento}}</td>
+                                        <td class="py-0" style="width: 14%;">Fecha de Nacimiento:</td>
+                                        <td class="py-0">{{fecnac}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Grado de Instrucción:</td>
+                                        <td colspan="2" class="py-0">{{desgrainst}}</td>
+                                        <td class="py-0" style="width: 18%;">Lugar de Residencia:</td>
+                                        <td colspan="2" class="py-0">{{lugarResidencia}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Puesto de trabajo:</td>
+                                        <td colspan="5" class="py-0">{{cargo_actual}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Empresa donde labora</td>
+                                        <td colspan="5" class="py-0">{{razsoc}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">Fecha de Evaluación:</td>
+                                        <td colspan="2" class="py-0">Día: {{diaAte}}</td>
+                                        <td colspan="2" class="py-0">Mes: {{mesAte}}</td>
+                                        <td class="py-0">Año: {{anioAte}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">II.- MOTIVO DE EVALUACIÓN:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0"><textarea name="" id="mot_eva"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{mot_eva}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="8" class="fw-bold py-0">III.- OBSERVACIÓN DE CONDUCTAS</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Presentación</td>
+                                        <td colspan="2" class="py-0">Adecuado</td>
+                                        <td class="py-0 text-center">( {{cod_presentAde}} )</td>
+                                        <td class="py-0" colspan="2">Inadecuado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{cod_presentIna}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Postura</td>
+                                        <td colspan="2" class="py-0">Erguida</td>
+                                        <td class="py-0 text-center">( {{cod_posturaErg}} )</td>
+                                        <td class="py-0" colspan="2">Encorvada</td>
+                                        <td class="py-0 text-center" colspan="2">( {{cod_posturaEnc}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width: 15%;" rowspan="3">Discurso
+                                        </td>
+                                        <td class="fw-bold py-0" style="width: 15%;">Ritmo</td>
+                                        <td class="py-0" style="width: 15%;">Lento</td>
+                                        <td class="py-0 text-center" style="width: 10%;">( {{dis_ritmoLent}} )
+                                        </td>
+                                        <td class="py-0" style="width: 15%;">Rápido</td>
+                                        <td class="py-0 text-center" style="width: 12%;">( {{dis_ritmoRap}} )
+                                        </td>
+                                        <td class="py-0" style="width: 10%;">Fluído</td>
+                                        <td class="py-0 text-center" style="width: 8%;">( {{dis_ritmoFlu}} )
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Tono</td>
+                                        <td class="py-0">Bajo</td>
+                                        <td class="py-0 text-center">( {{dis_tonoBajo}} )</td>
+                                        <td class="py-0">Moderado</td>
+                                        <td class="py-0 text-center">( {{dis_tonoMode}} )</td>
+                                        <td class="py-0">Alto</td>
+                                        <td class="py-0 text-center">( {{dis_tonoAlto}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Articulación</td>
+                                        <td class="py-0">Con dificultad</td>
+                                        <td class="py-0 text-center">( {{dis_articulacionConDif}} )</td>
+                                        <td class="py-0">Sin dificultad</td>
+                                        <td class="py-0 text-center">( {{dis_articulacionSinDis}} )</td>
+                                        <td class="py-0" colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" rowspan="3">Orientación</td>
+                                        <td class="fw-bold py-0">Tiempo</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_tiempoOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_tiempoDeso}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Espacio</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_espacioOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_espacioDeso}} )</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Persona</td>
+                                        <td class="py-0" colspan="2">Orientado</td>
+                                        <td class="py-0 text-center">( {{ori_personaOri}} )</td>
+                                        <td class="py-0">Desorientado</td>
+                                        <td class="py-0 text-center" colspan="2">( {{ori_personaDeso}} )</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">IV.- RESULTADOS DE EVALUACIÓN
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width: 70px;">Nivel Intelectual:</td>
+                                        <td class="py-0">{{re_nivel_inte}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Coordinación Visomotriz:
+                                        </td>
+                                        <td class="py-0">{{re_coord_visomotriz}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Nivel de Memoria:
+                                        </td>
+                                        <td class="py-0">{{re_nivel_memoria}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Personalidad:
+                                        </td>
+                                        <td class="py-0">{{re_personalidad}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold py-0">Afectividad:
+                                        </td>
+                                        <td class="py-0">{{re_afectividad}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">V.- CONCLUSIONES:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-0">
+                                            <textarea name="" id="conclusionesPsico"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{conclusionesPsico}}</textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr style=" background-color: gainsboro;">
+                                        <td colspan="2" class="fw-bold py-0">VI.- RECOMENDACIONES:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" py-0"><textarea name="" id="recomendacionesInforme"
+                                                style="border: none; resize: none; font-size: 100%; overflow: hidden; width: 100%;" disabled>{{{recomendacionesInforme}}}</textarea>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tbody class="text-start">
+                                    <tr>
+                                        <td class="fw-bold py-0" style="width:15%">Aptitud
+                                        </td>
+                                        <td class="py-0">{{tipresult_idData}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

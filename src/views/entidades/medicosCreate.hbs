@@ -1,0 +1,209 @@
+<div>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 tituloverde">Entidades</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active">Médico</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="left-content">
+                    <i class="fas fa-table me-1"></i>
+                    Ingrese un nuevo médico
+                </div>
+                <button class="btn position-relative" style="background-color: #793B8E; color: white; padding:0px"
+                    id="btnGrabar" onclick="Grabar()">
+                    <i class="fa-regular fa-floppy-disk" style="margin: 8px 12px;"></i>
+            </div>
+            <div class="card-body " style="max-height: 70vh; overflow-y: auto;">
+                <div class="container-fluid body1">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="p-3 py-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Datos del Médico</h4>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-9 border-right">
+                                        <div class="row mt-2 ">
+                                            <div class="col-md-4">
+                                                <label for="mednam" class="labels">Nombres</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        placeholder="Ingrese nombres" id="mednam" value=""
+                                                        oninput="limitarInput(event,50);" data-nombre="Nombres"
+                                                        required>
+                                                </div>
+
+                                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labels" for="medap">Apellido paterno</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-sm" value=""
+                                                        id="medap" placeholder="Ingrese apellido paterno"
+                                                        oninput="limitarInput(event,40);" data-nombre="Apellido paterno"
+                                                        required>
+                                                </div>
+                                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="labels" for="medam">Apellido materno</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control form-control-sm" value=""
+                                                        id="medam" placeholder="Ingrese apellido materno"
+                                                        oninput="limitarInput(event,40);" data-nombre="Apellido materno"
+                                                        required>
+                                                </div>
+                                                <div class="invalid-feedback">Este campo es obligatorio</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2 ">
+                                            <div class="col-md-12">
+                                                <div class="row ">
+                                                    <div class="col-md-2"><label class="labels" for="docide">Tipo de
+                                                            documento</label>
+                                                        <select class="form-select form-control form-control-sm"
+                                                            id="docide" aria-label="Default select example" required>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2"><label class="labels" for="nundoc">Número
+                                                            de
+                                                            documento</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nundoc" class="form-control btn-sm"
+                                                                placeholder="Número de documento" value=""
+                                                                oninput="limitarInput(event,20);"
+                                                                data-nombre="N°documento" required>
+                                                        </div>
+                                                        <div class="invalid-feedback">Este campo es obligatorio
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4"><label class="labels" for="med_cmp">N° de
+                                                            colegiatura</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="med_cmp" class="form-control btn-sm"
+                                                                placeholder="Colegio de médicos del Perú"
+                                                                oninput="limitarInput(event,10);"
+                                                                data-nombre="N° de colegiatura">
+                                                        </div>
+                                                        <div class="invalid-feedback">Este campo es obligatorio
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4"><label class="labels"
+                                                            for="medcel">Celular</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="medcel" class="form-control btn-sm"
+                                                                placeholder="Celular" oninput="limitarInput(event,20);"
+                                                                data-nombre="Celular">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4"><label class="labels" for="medTelfij">Teléfono
+                                                            Fijo</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="medTelfij"
+                                                                class="form-control btn-sm" placeholder="Teléfono Fijo"
+                                                                oninput="limitarInput(event,20);"
+                                                                data-nombre="Teléfono fijo">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4"><label class="labels"
+                                                            for="med_correo">Email</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="med_correo"
+                                                                class="form-control btn-sm" value=""
+                                                                placeholder="correo@ejemplo.com"
+                                                                oninput="limitarInput(event,130);" data-nombre="Email">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4"><label class="labels"
+                                                            for="meddir">Dirección</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control btn-sm" id="meddir"
+                                                                value="" placeholder="Dirección"
+                                                                oninput="limitarInput(event,150);"
+                                                                data-nombre="Dirección" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-12">
+                                                <div class="row mt-2">
+                                                    <div class="col-md-6"><label class="labels"
+                                                            for="esp_id">Especialidad</label>
+                                                        <select class="form-select form-control form-control-sm"
+                                                            id="esp_id" aria-label="Default select example" required>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6"><label class="labels" for="med_rne">Codigo
+                                                            de
+                                                            especialidad</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="med_rne" class="form-control btn-sm"
+                                                            placeholder="Ingrese su codigo"
+                                                            oninput="limitarInput(event,10)"
+                                                            data-nombre="Codigo de especialidad">
+                                                        </div>
+                                                        <div class="invalid-feedback">Este campo es obligatorio
+                                                        </div>
+                                                    </div>
+
+                                                    <!--<div class="col-md-4">
+                                                    <label class="labels" for="med_firma">Firma</label>
+                                                    <input type="file" class="form-select form-control form-control-sm"
+                                                        id="med_firma">
+                                                </div>-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <style>
+                                            canvas {
+                                                max-width: 100%;
+                                                width: 250px;
+                                                height: 125px;
+                                            }
+                                        </style>
+                                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                            <h5 class="text-right">Firma</h5>
+                                            <canvas id="canvas" width="250" height="125" class="rectangulo-canvas mb-3"
+                                                required></canvas>
+                                            <div class="button-container">
+                                                <input type="file" id="file-input" style="display: none;"
+                                                    accept="image/*">
+                                                <button id="reset-btn" class="btn btn4"
+                                                    style="background-color: #793B8E;color: white;border-color: #793B8E;">
+                                                    <i class="fa-solid fa-circle-xmark"></i>
+                                                </button>
+                                                <button id="upload-btn" class="btn btn4"
+                                                    style="background-color: #793B8E;color: white;border-color: #793B8E;">
+                                                    <i class="fa-solid fa-upload"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" id="inputid" value="{{id}}" style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts-->
+    <script src="/js/entidades/medicosCreate.js"> </script>

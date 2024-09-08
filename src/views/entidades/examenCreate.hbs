@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clockpicker/0.0.7/bootstrap-clockpicker.min.js"></script>
+<div>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 tituloverde">Entidades</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active">Exámenes</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="left-content">
+                    <i class="fas fa-table me-1"></i>
+                    <label id="tituloEncabezado">Ingrese nuevo exámen</label>
+                </div>
+                <button class="btn position-relative" style="background-color: #793B8E; color: white; padding:0px"
+                    id="btnGrabar" type="submit" onclick="Grabar()">
+                    <i class="fa-regular fa-floppy-disk" style="margin: 8px 12px;"></i>
+                </button>
+            </div>
+            <div class="card-body " style="max-height: 70vh; overflow-y: auto;">
+                <div class="container-fluid body1" id="body1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="p-3 py-3">
+                                <div class="row mt-1">
+
+                                    <div class="col-md-4">
+                                        <label class="labels" for="desexa">Descripción</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Ingrese la descripción" id="desexa" value=""
+                                                oninput="limitarInput(event,80);" data-nombre="Descripción" required>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="labels" for="ordimp">Órden de impresión</label><input type="text"
+                                            class="form-control form-control-sm"
+                                            placeholder="Ingrese el órden de impresión" id="ordimp" value="" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="labels" for="ordprot">Órden de protocolo</label><input type="text"
+                                            class="form-control form-control-sm"
+                                            placeholder="Ingrese el órden de protocolo" id="ordprot" value="" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col bloque" id="starep">
+                                        <label for="" class="labels">Estado de reporte</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="" class="mr-4"><input type="radio" class="me-2" value="S"
+                                                    name="starep" required>SI</label>
+                                            <label for="" class=""><input type="radio" class="me-2" value="N"
+                                                    name="starep" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="staaddfile">
+                                        <label class="labels" for="">Agrega archivo</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="" class="mr-4"><input type="radio" class="me-2" value="S"
+                                                    name="staaddfile" required>SI</label>
+                                            <label for="" class=""><input type="radio" class="me-2" value="N"
+                                                    name="staaddfile" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col bloque" id="reg_cie10">
+                                        <label for="" class="labels">Registra CIE.10</label>
+                                        <div class="form-inline col-sm-12 form-group" style="padding: 0px;">
+                                            <label for="" class="mr-4"><input type="radio" class="me-2" value="S"
+                                                    name="reg_cie10" required>SI</label>
+
+                                            <label for="" class=""><input type="radio" class="me-2" value="N"
+                                                    name="reg_cie10" required checked>NO</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="text" id="inputid" value="{{id}}" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts-->
+    <script src="/js/entidades/examenCreate.js"> </script>

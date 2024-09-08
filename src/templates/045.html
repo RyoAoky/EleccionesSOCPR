@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap">
+    <style>
+        @page {
+            size: A4;
+            /* Puedes usar otros tamaños como 'letter', 'legal', etc. */
+            margin: 1cm;
+            /* Márgenes de la página */
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid;
+        }
+
+        .border {
+            border: 1px solid;
+        }
+
+        .no-border-top {
+            border-top: none;
+        }
+
+        .no-border-bottom {
+            border-bottom: none;
+        }
+
+        .sin-bordes>thead,
+        .sin-bordes>tbody,
+        .sin-bordes>tfoot,
+        .sin-bordes>thead>tr,
+        .sin-bordes>tbody>tr,
+        .sin-bordes>tfoot>tr,
+        .sin-bordes>thead>tr>th,
+        .sin-bordes>thead>tr>td,
+        .sin-bordes>tbody>tr>td,
+        .sin-bordes>tfoot>tr>td {
+            border: none;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            padding: 10px;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <table class="sin-bordes">
+            <thead class="thead">
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <div class="text-star mb-1">
+                                            <img src="https://grupo.clinicasanpedro.com/src/public/img/logo.png"
+                                                alt="Imagen 1" class="img-fluid" style="width: 120px; height: auto;">
+                                        </div>
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <div class="text-center">
+                                            <h1 class="fw-bold" style="font-size: 16px;">INFORME MÉDICO
+                                            </h1>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="sin-bordes" style="font-size: 10px;">
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 80%;">
+                                        <table class="sin-bordes">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        Nombre completo
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{appm_nom}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        AREA
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{area_actual}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        Puesto al que postula
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{cargo_actual}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        Cargo actual
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{cargo_actual}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        DNI:
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{numdoc}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        Fecha del Examen:
+                                                    </td>
+                                                    <td class="p-0 ps-1 border-bottom" colspan="2">
+                                                        {{fechaAtencion}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">
+                                                        Evaluación Médica
+                                                    </td>
+                                                    <td class="ps-0 pe-0">
+                                                        <table >
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="p-0 ps-1 border" style="width: 20%;">Edad
+                                                                    </td>
+                                                                    <td class="p-0 ps-1 border" style="width: 20%;">IMC
+                                                                    </td>
+                                                                    <td class="p-0 ps-1 border" style="width: 20%;">Peso
+                                                                    </td>
+                                                                    <td class="p-0 ps-1 border" style="width: 20%;">
+                                                                        Talla</td>
+                                                                    <td class="p-0 ps-1 border" style="width: 20%;">PA
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="p-0 ps-1 border ">{{Edad}} años</td>
+                                                                    <td class="p-0 ps-1 border">{{ResultadoIMC}}
+                                                                        {{UnimedIMC}}</td>
+                                                                    <td class="p-0 ps-1 border">{{ResultadoPeso}}
+                                                                        {{UnimedPeso}}</td>
+                                                                    <td class="p-0 ps-1 border">{{ResultadoTalla}}
+                                                                        {{UnimedTalla}}</td>
+                                                                    <td class="p-0 ps-1 border">{{ResultadoPA}}
+                                                                        {{UnidmedPA}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td style="vertical-align: top; width: 20%;">
+                                        <table class="sin-bordes">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="p-0 pe-1">Examen</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1" style="width: 25%;">
+                                                        Preocupacional
+                                                    </td>
+                                                    <td class="p-0 ps-1 border text-center" style="width: 10%;">
+                                                        {{preocuficha}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1">
+                                                        Periódica
+                                                    </td>
+                                                    <td class="p-0 ps-1 border text-center">
+                                                        {{periodicaficha}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1">
+                                                        Retiro
+                                                    </td>
+                                                    <td class="p-0 ps-1 border text-center">
+                                                        {{retiroficha}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1">
+                                                        Otros
+                                                    </td>
+                                                    <td class="p-0 ps-1 border text-center">
+                                                        {{otrosficha}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="sin-bordes">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 70%;">
+                                        <table class="sin-bordes">
+                                            <tbody style="font-size: 10px;">
+                                                <tr>
+                                                    <td class="p-0 ps-1" style="width: 5%;">Clínico Ocupacional</td>
+                                                    <td class="p-0 ps-1 border-bottom" style="width: 40%; "></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Psicología</td>
+                                                    <td class="p-0 ps-1 border-bottom">
+                                                        <textarea name="" id="con_eva_psicologica"
+                                                            style="border: none; resize: none; overflow: hidden; width: 100%;">{{con_eva_psicologica}}</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Musculoesquelético</td>
+                                                    <td class="p-0 ps-1 border-bottom">
+                                                        <textarea name="" id="con_musculo_esqueletica"
+                                                            style="border: none; resize: none; overflow: hidden; width: 100%;">{{con_musculo_esqueletica}}</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Oftalmología</td>
+                                                    <td class="p-0 ps-1 border-bottom">
+                                                        <textarea name="" id="con_oftalmologia"
+                                                            style="border: none; resize: none; overflow: hidden; width: 100%;">{{con_oftalmologia}}</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Rx Tórax</td>
+                                                    <td class="p-0 ps-1 border-bottom">
+                                                        <textarea id="con_radiograficas"
+                                                            style="border: none; resize: none; overflow: hidden; width: 100%;">{{con_radiograficas}}</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Electrocardiograma</td>
+                                                    <td class="p-0 ps-1 border-bottom">
+                                                        <textarea id="con_electrocardiograma"
+                                                            style="border: none; resize: none; overflow: hidden; width: 100%;">{{con_electrocardiograma}}</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Audiometría</td>
+                                                    <td class="p-0 ps-1 border-bottom">{{con_audiometria}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 ps-1">Espirometría</td>
+                                                    <td class="p-0 ps-1 border-bottom">{{con_espirometria}}</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td style="vertical-align: top; width: 30%;">
+                                        <table class="sin-bordes">
+                                            <tbody style="font-size: 10px;">
+                                                <tr>
+                                                    <td class="p-0 pe-1" style="text-align: right; width: 10%;">Hemoglobina</td>
+                                                    <td class="border py-0" style="width: 40%;">
+                                                        {{Hemoglobina}} {{unidHemoglobina}}</td>
+                                                    <td class="border p-1 pe-1" style="width: 50%;">
+                                                        {{RangoHemoglobina}}</td>
+                                                </tr>
+                                                <tr>
+
+                                                    <td class="p-0 pe-1" style="text-align: right; width: 10%;">Glucosa
+                                                    </td>
+                                                    <td class="border py-0" style="width: 40%;">{{Glucosa}} {{unidGlucosa}}</td>
+                                                    <td class="border" style="width: 50%;">{{RangoGluco}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1" style="text-align: right; width: 10%;">Colesterol
+                                                    </td>
+                                                    <td class="border py-0" style="width: 40%;">{{Colesterol}} {{unidColesterol}}</td>
+                                                    <td class="border" style="width: 50%;">{{RangoColesterol}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1" style="text-align: right; width: 10%;">
+                                                        Triglicéridos</td>
+                                                    <td class="border py-0" style="width: 40%;">{{Trigliceridos}} {{unidTrigliceridos}}</td>
+                                                    <td class="border" style="width: 50%;">{{RangoTrigliceridos}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 pe-1" style="text-align: right; width: 10%;">Orina</td>
+                                                    <td class="border py-0" colspan="2" style="width: 90%;">{{Orina}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    Diagnósticos
+                                </tr>
+                                {{#cie10}}
+                                <tr>
+                                    <td class="p-0 ps-1 border" style="width: 3%;">
+                                        {{{numDiag}}}
+                                    </td>
+                                    <td class="p-0 ps-1 border">
+                                        {{{diagnosticos}}}
+                                    </td>
+                                </tr>
+                                {{/cie10}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    Recomendaciones
+                                </tr>
+                                {{#recomendaciones}}
+                                <tr>
+                                    <td class="p-0 ps-1 border" style="width: 3%;">
+                                        {{{numReco}}}
+                                    </td>
+                                    <td class="p-0 ps-1 border">
+                                        {{{desrec}}}
+                                    </td>
+                                </tr>
+                                {{/recomendaciones}}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="display: none;">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    <td class="p-0 ps-1 text-center" style="width: 30%;">Restricción</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 9%;">SI</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 9%;">NO</td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top" style="width: 4%;"></td>
+                                    <td class="p-0 ps-1 text-center" style="width: 30%;">Restricción</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 9%;">SI</td>
+                                    <td class="p-0 ps-1 text-center" style="width: 9%;">NO</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">Uso de lentes correctores</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">No exponerse a mas de 85 db</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">No realizar manejo manual de cargas</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">No exceder los 25 Kg al cargar peso</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">No exponerse a sustancias químicas</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">No laborar a más de 2500 msnm</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">No conducir vehículos</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">No manipular cables eléctricos</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">No laborar en espacios confinados</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">No realizar trabajos en altura (mas 1.8 mts)</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1">No exposición a más de 80 dB, sin uso estricto y
+                                        supervisado de EPP auditivo</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1 no-border-bottom no-border-top"></td>
+                                    <td class="p-0 ps-1">OTROS:</td>
+                                    <td class="p-0 ps-1"></td>
+                                    <td class="p-0 ps-1"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="records_list table-sm table-bordered">
+                            <tbody style="font-size: 10px; ">
+                                <tr>
+                                    <td class="p-0" style="text-align: center;" colspan="2">
+                                        <input type="hidden" value={{med_firma}} class="firma" id="firma">
+                                        <canvas class="canvas" id="canvas"
+                                            style="width: 150px; margin: 5px 0 5px 0;"></canvas>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 text-center" style="width: 30%;" colspan="2">
+                                        Sello y Firma
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 text-center" style="width: 50%;">Médico: </td>
+                                    <td class="p-0 ps-1 text-center">{{medapmn_proto}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 ps-1 text-center">Número de CMP: </td>
+                                    <td class="p-0 ps-1 text-center">{{med_cmp_proto}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            cargarFirma("firma", "canvas");
+            od();
+        });
+
+        function cargarFirma(inputId, canvasId) {
+            let imgb64 = document.getElementById(inputId).value;
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext("2d");
+            const imagen = new Image();
+            imagen.onload = function () {
+                // Set canvas dimensions to match image dimensions
+                canvas.width = imagen.width;
+                canvas.height = imagen.height;
+
+                // Draw the image on the canvas at original size
+                ctx.drawImage(imagen, 0, 0);
+            };
+
+            imagen.src = "data:image/webp;base64," + imgb64;
+        }
+
+        function Ajustar(textareaId) {
+            var textarea = document.getElementById(textareaId);
+            if (textarea) {
+                textarea.style.height = "auto";
+                textarea.style.height = textarea.scrollHeight + "px";
+            }
+        }
+        window.addEventListener('load', function () {
+            Ajustar("con_eva_psicologica");
+            Ajustar("con_musculo_esqueletica");
+            Ajustar("con_radiograficas");
+            Ajustar("con_oftalmologia");
+            Ajustar("con_electrocardiograma");
+        });
+    </script>
+</body>
+</html>
