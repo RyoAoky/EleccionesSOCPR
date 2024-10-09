@@ -69,7 +69,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 43200000 // 12 horas en milisegundos
+      //maxAge: 43200000 // 12 horas en milisegundos
+      maxAge: 86400000 // 24 horas en milisegundos
     },
     store: new MSSQLStore({
       db: new Sequelize(dbSettings.database, dbSettings.user, dbSettings.password, {
@@ -85,7 +86,7 @@ app.use(
         logging: false
       }),
       checkExpirationInterval: 15 * 60 * 1000,
-      expiration: 24 * 60 * 60 * 1000
+      expiration: 24 * 60 * 60 * 1000*1000
     })
   })
 );

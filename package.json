@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tabler/icons": "^3.19.0",
     "archiver": "^6.0.1",
     "basic-auth": "^2.0.1",
     "bcryptjs": "^2.4.3",
